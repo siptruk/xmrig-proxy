@@ -80,8 +80,8 @@ void xmrig::ShareLog::accept(const AcceptEvent *event)
         return;
     }
 
-    LOG_INFO("%s " CYAN("%04u ") GREEN_BOLD("accepted") " (%" PRId64 "/%" PRId64 "+%" PRId64 ") diff " WHITE_BOLD("%" PRIu64) " ip " WHITE_BOLD("%s") " " BLACK_BOLD("(%" PRIu64 " ms)"),
-             Tags::proxy(), event->mapperId(), m_stats->data().accepted, m_stats->data().rejected, m_stats->data().invalid, event->result.diff, event->ip(), event->result.elapsed);
+    LOG_INFO("%s " CYAN("%04u ") GREEN_BOLD("accepted") " (%" PRId64 "/%" PRId64 "+%" PRId64 ") diff " WHITE_BOLD("%" PRIu64) " | " WHITE_BOLD("%" PRIu64) " ip " WHITE_BOLD("%s") " " BLACK_BOLD("(%" PRIu64 " ms)"),
+             Tags::proxy(), event->mapperId(), m_stats->data().accepted, m_stats->data().rejected, m_stats->data().invalid, event->result.diff, event->result.actualDiff, event->ip(), event->result.elapsed);
 }
 
 
@@ -91,6 +91,6 @@ void xmrig::ShareLog::reject(const AcceptEvent *event)
         return;
     }
 
-    LOG_INFO("%s " CYAN("%04u ") RED_BOLD("rejected") " (%" PRId64 "/%" PRId64 "+%" PRId64 ") diff " WHITE_BOLD("%" PRIu64) " ip " WHITE_BOLD("%s") " " RED("\"%s\"") " " BLACK_BOLD("(%" PRIu64 " ms)"),
-             Tags::proxy(), event->mapperId(), m_stats->data().accepted, m_stats->data().rejected, m_stats->data().invalid, event->result.diff, event->ip(), event->error(), event->result.elapsed);
+    LOG_INFO("%s " CYAN("%04u ") RED_BOLD("rejected") " (%" PRId64 "/%" PRId64 "+%" PRId64 ") diff " WHITE_BOLD("%" PRIu64) " | " WHITE_BOLD("%" PRIu64) " ip " WHITE_BOLD("%s") " " BLACK_BOLD("(%" PRIu64 " ms)"),
+             Tags::proxy(), event->mapperId(), m_stats->data().accepted, m_stats->data().rejected, m_stats->data().invalid, event->result.diff, event->result.actualDiff, event->ip(), event->error(), event->result.elapsed);
 }
